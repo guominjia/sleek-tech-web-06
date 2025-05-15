@@ -69,7 +69,7 @@ export default {
           card: "#FFFFFF",
           blue: "#1E88E5",
           dark: "#333333",
-          light: "#F0F4F8",
+          light: "#E8F4FE",
         },
       },
       borderRadius: {
