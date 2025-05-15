@@ -33,16 +33,18 @@ const Index = () => {
       <Background />
 
       {/* Header with Logo and About button */}
-      <header className="bg-white/80 backdrop-blur-sm shadow-sm py-4 relative z-10">
+      <header className="bg-white/80 backdrop-blur-sm shadow-md py-5 relative z-10 border-b border-blue-100">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <Logo />
+          <div className="animate-fade-in">
+            <Logo />
+          </div>
           <AboutButton />
         </div>
       </header>
 
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-4 py-10 md:py-16 flex flex-col items-center relative z-10">
-        <div className="w-full max-w-4xl mx-auto bg-white/90 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden p-8 md:p-10">
+        <div className="w-full max-w-4xl mx-auto bg-white/95 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden p-8 md:p-10 border border-blue-50">
           <div className="space-y-8">
             {/* Search Bar */}
             <SearchBar onSearch={handleSearch} />
