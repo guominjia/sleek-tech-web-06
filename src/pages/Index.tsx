@@ -6,11 +6,13 @@ import ActionButtons from "@/components/ActionButtons";
 import QueryDisplay from "@/components/QueryDisplay";
 import Background from "@/components/Background";
 import AboutButton from "@/components/AboutButton";
+import HistoryModal from "@/components/HistoryModal";
 import { toast } from "sonner";
 
 const Index = () => {
   const [query, setQuery] = useState("");
   const [selectedWeek, setSelectedWeek] = useState("WW10");
+  const [historyModalOpen, setHistoryModalOpen] = useState(false);
 
   const handleSearch = (searchQuery: string) => {
     setQuery(searchQuery);
@@ -23,8 +25,7 @@ const Index = () => {
   };
 
   const handleViewHistory = () => {
-    toast.info("Opening history view...");
-    // Implementation would go here in a real app
+    setHistoryModalOpen(true);
   };
 
   return (
@@ -77,6 +78,12 @@ const Index = () => {
           © 2025 Smart Work Assistant. All rights reserved.
         </div>
       </footer>
+
+      {/* History Modal */}
+      <HistoryModal 
+        open={historyModalOpen}
+        onClose={() => setHistoryModalOpen(false)}
+      />
     </div>
   );
 };
