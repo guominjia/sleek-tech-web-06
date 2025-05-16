@@ -1,7 +1,23 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, File, History } from "lucide-react";
+import { 
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue 
+} from "@/components/ui/select";
+import { ChevronDown, File, History, Check } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 interface ActionButtonsProps {
   onGenerateReport: () => void;
@@ -17,6 +33,27 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
   onWeekChange,
 }) => {
   const weeks = ["WW10", "WW11", "WW12", "WW13", "WW14"];
+  const [selectedWeeks, setSelectedWeeks] = useState<string[]>([selectedWeek]);
+
+  const toggleWeek = (week: string) => {
+    setSelectedWeeks((current) => {
+      // Check if week is already selected
+      const isSelected = current.includes(week);
+      
+      // If it's already selected, remove it, otherwise add it
+      if (isSelected) {
+        // Don't allow removing if it's the last selected item
+        if (current.length === 1) return current;
+        return current.filter(w => w !== week);
+      } else {
+        return [...current, week];
+      }
+    });
+    
+    // Update the parent state with the first selected week for backward compatibility
+    // In a real app, you'd likely want to update this to handle multiple weeks
+    onWeekChange(week);
+  };
 
   return (
     <div className="flex flex-wrap gap-4 justify-center">
@@ -28,34 +65,29 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         Generate Report
       </Button>
       
-      <div className="relative">
-        <Button
-          variant="outline"
-          className="flex items-center gap-2 border border-gray-200"
-          onClick={() => document.getElementById("week-dropdown")?.classList.toggle("hidden")}
-        >
-          {selectedWeek}
-          <ChevronDown className="h-4 w-4" />
-        </Button>
-        
-        <div 
-          id="week-dropdown" 
-          className="absolute z-10 hidden mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg"
-        >
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button 
+            variant="outline" 
+            className="flex items-center gap-2 border border-gray-200 bg-white"
+          >
+            {selectedWeeks.length > 1 ? `${selectedWeeks.length} selected` : selectedWeek}
+            <ChevronDown className="h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-full min-w-[120px] bg-white">
           {weeks.map((week) => (
-            <div
+            <DropdownMenuCheckboxItem
               key={week}
-              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-              onClick={() => {
-                onWeekChange(week);
-                document.getElementById("week-dropdown")?.classList.add("hidden");
-              }}
+              checked={selectedWeeks.includes(week)}
+              onCheckedChange={() => toggleWeek(week)}
+              className="cursor-pointer"
             >
               {week}
-            </div>
+            </DropdownMenuCheckboxItem>
           ))}
-        </div>
-      </div>
+        </DropdownMenuContent>
+      </DropdownMenu>
       
       <Button
         onClick={onViewHistory}
