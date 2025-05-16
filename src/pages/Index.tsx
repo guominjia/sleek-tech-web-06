@@ -33,7 +33,7 @@ const Index = () => {
       <Background />
 
       {/* Header with Logo and About button */}
-      <header className="bg-white/80 backdrop-blur-sm shadow-md py-5 relative z-10 border-b border-blue-100">
+      <header className="bg-white/80 backdrop-blur-sm shadow-lg py-6 relative z-10 border-b border-blue-100">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="animate-fade-in">
             <Logo />
@@ -43,22 +43,27 @@ const Index = () => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 container mx-auto px-4 py-10 md:py-16 flex flex-col items-center relative z-10">
-        <div className="w-full max-w-4xl mx-auto bg-white/95 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden p-8 md:p-10 border border-blue-50">
-          <div className="space-y-8">
-            {/* Search Bar */}
-            <SearchBar onSearch={handleSearch} />
+      <main className="flex-1 flex flex-col items-center justify-center py-12 md:py-16 relative z-10">
+        <div className="w-full max-w-5xl mx-auto px-4">
+          <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-xl overflow-hidden p-10 border border-blue-100">
+            <div className="space-y-10">
+              {/* Search Bar */}
+              <div className="mb-8">
+                <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Ask Smart Work Assistant</h2>
+                <SearchBar onSearch={handleSearch} />
+              </div>
 
-            {/* Action Buttons */}
-            <ActionButtons
-              onGenerateReport={handleGenerateReport}
-              onViewHistory={handleViewHistory}
-              selectedWeek={selectedWeek}
-              onWeekChange={setSelectedWeek}
-            />
+              {/* Action Buttons */}
+              <ActionButtons
+                onGenerateReport={handleGenerateReport}
+                onViewHistory={handleViewHistory}
+                selectedWeek={selectedWeek}
+                onWeekChange={setSelectedWeek}
+              />
 
-            {/* Query Display */}
-            <QueryDisplay selectedWeek={selectedWeek} query={query} />
+              {/* Query Display */}
+              <QueryDisplay selectedWeek={selectedWeek} query={query} />
+            </div>
           </div>
         </div>
       </main>
