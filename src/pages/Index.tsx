@@ -28,13 +28,13 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col text-white">
       {/* Background */}
       <Background />
 
       {/* Header with Logo and About button */}
-      <header className="bg-white/80 backdrop-blur-sm shadow-lg py-6 relative z-10 border-b border-blue-100">
-        <div className="container mx-auto px-4 flex justify-between items-center">
+      <header className="bg-slate-900/40 backdrop-blur-md shadow-lg py-6 relative z-10 border-b border-blue-500/20">
+        <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="animate-fade-in">
             <Logo />
           </div>
@@ -43,13 +43,16 @@ const Index = () => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col items-center justify-center py-12 md:py-16 relative z-10">
-        <div className="w-full max-w-5xl mx-auto px-4">
-          <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-xl overflow-hidden p-10 border border-blue-100">
-            <div className="space-y-10">
+      <main className="flex-1 flex flex-col items-center justify-center pt-8 pb-12 md:py-16 relative z-10">
+        <div className="w-full max-w-6xl mx-auto px-4">
+          <div className="bg-slate-900/50 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden p-10 border border-blue-500/20 relative">
+            {/* Glowing border effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-blue-500/10 rounded-2xl"></div>
+            
+            <div className="space-y-12 relative">
               {/* Search Bar */}
               <div className="mb-8">
-                <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Ask Smart Work Assistant</h2>
+                <h2 className="text-2xl font-semibold text-center bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent mb-10">Ask Smart Work Assistant</h2>
                 <SearchBar onSearch={handleSearch} />
               </div>
 
@@ -69,8 +72,8 @@ const Index = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white/80 backdrop-blur-sm py-4 border-t border-gray-200 relative z-10">
-        <div className="container mx-auto px-4 text-center text-sm text-gray-500">
+      <footer className="bg-slate-900/40 backdrop-blur-md py-4 border-t border-blue-500/20 relative z-10">
+        <div className="container mx-auto px-4 text-center text-sm text-blue-300/70">
           © 2025 Smart Work Assistant. All rights reserved.
         </div>
       </footer>

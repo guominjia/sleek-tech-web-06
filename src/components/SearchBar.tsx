@@ -17,20 +17,21 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto">
+    <div className="relative w-full max-w-5xl mx-auto">
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600 rounded-xl blur-md opacity-75 -z-10 animate-pulse"></div>
       <form onSubmit={handleSubmit} className="relative">
         <Input
-          className="w-full pl-14 pr-24 py-8 text-lg border-2 rounded-xl border-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-md"
+          className="w-full pl-14 pr-32 py-9 text-lg rounded-xl border-0 bg-slate-900/60 backdrop-blur-sm text-white placeholder:text-slate-300/70 focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-xl transition-all duration-200"
           placeholder="What can I help you with today?"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <div className="absolute left-5 top-1/2 transform -translate-y-1/2 text-blue-500">
+        <div className="absolute left-5 top-1/2 transform -translate-y-1/2 text-purple-400">
           <span className="text-2xl font-bold">+</span>
         </div>
         <Button
           type="submit"
-          className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-5 py-2.5"
+          className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg px-5 py-6 shadow-lg transition-all duration-200"
         >
           <Search className="h-5 w-5 mr-2" />
           <span>Search</span>
